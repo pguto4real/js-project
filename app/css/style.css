@@ -26,5 +26,69 @@ body::before{
     width: 100%;
     background-color: rgba(0, 0, 0, 0.7)  ;
     z-index: -1;
+    transition: all 0.5s ease-in-out;
 }
+
+.slider__container{
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16)  0 3px 6px  rgba(0, 0, 0, 0.23)  ;
+    height: 70vh;
+    width: 70vw;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #ddd;
+border-radius: 5px;
+}
+
+.slide{
+    opacity: 0;
+    height: 100vh;
+    width: 100vw;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: -15vh;
+    left: -15vw;    
+    z-index: 5;
+}
+.slide.active{
+    opacity: 1;
+}
+.arrow{
+    position: fixed;
+    background: #ddd;
+    color: #111;
+    padding: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border-radius: 5px;
+z-index: 1;
+}
+.arrow i{
+    font-size: 1.5rem;
+}
+
+.arrow:focus{
+    outline: none;
+}
+
+.left__arrow{
+    left: calc(15vw - 65px);
+}
+
+
+.right__arrow{
+    right: calc(15vw - 65px);
+}
+
+
+
+
+
+
+
+
+
+
+
 

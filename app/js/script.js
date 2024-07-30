@@ -1,3 +1,7 @@
+
+let activeSlide = 1
+
+
 const slider_images = [
     'app/img/bad-boys.jpg',
     'app/img/deadpool.jpg',
@@ -5,38 +9,45 @@ const slider_images = [
     'app/img/jl3.jpg',
 ]
 
+
+function getVariables() {
+    const body = document.body;
+    const sliders = document.querySelectorAll('.slide')
+    const leftBtn = document.querySelector('#left')
+    const rightBtn = document.querySelector('#right')
+
+    setBgBody(body,sliders)
+}
 const slider_div = document.querySelector('.slider__container')
 
-const addSliderImg=(images)=>{
-    const sliderHTML = images.map((image)=>{
-        return `<div class="slide" style="background-image:url('${image}')"></div>`;
+function main(images, callback) {
+    setTimeout(() => {
+        addSliderImg(images)
+        callback()
+    }, 2000)
+}
+
+main(slider_images, getVariables)
+
+
+
+
+const addSliderImg = (images) => {
+    let active = images[activeSlide];
+   
+    let sliderHTML = images.map((image) => {
+        if(active === image){
+            return `<div class="slide active" style="background-image:url('${image}')"></div>`;
+        }
+        return `<div class="slide" style="background-image:url('${window.location.origin}/${image}')"></div>`;
     }).join('')
-    sliderHTML += `<button class arrow `
+
+    sliderHTML += `<button class="arrow left__arrow" id="left"><i class="fas fa-arrow-left"></i></button>
+        <button class="arrow right__arrow" id="right"><i class="fas fa-arrow-right"></i></button>`
+
     slider_div.innerHTML = sliderHTML
 }
 
-addSliderImg(slider_images);
 
 
-// const renderSongs = (array) => {
-//     const songsHTML = array
-//       .map((song)=> {
-//         return `
-//         <li id="song-${song.id}" class="playlist-song">
-//         <button class="playlist-song-info" onclick="playSong(${song.id})">
-//             <span class="playlist-song-title">${song.title}</span>
-//             <span class="playlist-song-artist">${song.artist}</span>
-//             <span class="playlist-song-duration">${song.duration}</span>
-//         </button>
-//         <button class="playlist-song-delete" aria-label="Delete ${song.title}">
-//             <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8" fill="#4d4d62"/>
-//             <path fill-rule="evenodd" clip-rule="evenodd" d="M5.32587 5.18571C5.7107 4.90301 6.28333 4.94814 6.60485 5.28651L8 6.75478L9.39515 5.28651C9.71667 4.94814 10.2893 4.90301 10.6741 5.18571C11.059 5.4684 11.1103 5.97188 10.7888 6.31026L9.1832 7.99999L10.7888 9.68974C11.1103 10.0281 11.059 10.5316 10.6741 10.8143C10.2893 11.097 9.71667 11.0519 9.39515 10.7135L8 9.24521L6.60485 10.7135C6.28333 11.0519 5.7107 11.097 5.32587 10.8143C4.94102 10.5316 4.88969 10.0281 5.21121 9.68974L6.8168 7.99999L5.21122 6.31026C4.8897 5.97188 4.94102 5.4684 5.32587 5.18571Z" fill="white"/></svg>
-//           </button>
-//         </li>
-//         `;
-//       })
-//       .join("");
-  
-//     playlistSongs.innerHTML = songsHTML;
-//   };
-  
+
