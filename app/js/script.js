@@ -16,7 +16,7 @@ function getVariables() {
     const leftBtn = document.querySelector('#left')
     const rightBtn = document.querySelector('#right')
 
-    setBgBody(body,sliders)
+    setBgBody(body, sliders)
 }
 const slider_div = document.querySelector('.slider__container')
 
@@ -27,6 +27,11 @@ function main(images, callback) {
     }, 2000)
 }
 
+
+const setBgBody = (body, sliders) => {
+    body.style.backgroundImage = sliders[activeSlide].style.backgroundImage
+}
+
 main(slider_images, getVariables)
 
 
@@ -34,9 +39,9 @@ main(slider_images, getVariables)
 
 const addSliderImg = (images) => {
     let active = images[activeSlide];
-   
+
     let sliderHTML = images.map((image) => {
-        if(active === image){
+        if (active === image) {
             return `<div class="slide active" style="background-image:url('${image}')"></div>`;
         }
         return `<div class="slide" style="background-image:url('${window.location.origin}/${image}')"></div>`;
