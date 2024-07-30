@@ -32,6 +32,10 @@ const setBgBody = (body, sliders) => {
     body.style.backgroundImage = sliders[activeSlide].style.backgroundImage
 }
 
+const setActiveSlide=(body,sliders)=>{
+    body.style.backgroundImage = sliders[activeSlide].style.backgroundImage
+}
+
 main(slider_images, getVariables)
 
 
