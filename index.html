@@ -22,8 +22,18 @@
     <button class="scroll-top scroll-to-target" data-target="html">
         <i class="fas fa-angle-up"></i>
     </button> -->
-
+    
     <header>
+        <div class="modal search__modal" id="search-modal" tabindex="-1" style="display: block; padding-right: 17px;" aria-modal="true" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form>
+                        <input type="text" placeholder="Search here...">
+                        <button><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="nav__container">
             <div class="row">
                 <nav class="header__nav">
@@ -42,106 +52,50 @@
                             </ul>
                         </div>
                         <div class="search"><i class="fa-solid fa-magnifying-glass"></i>
-                        <div class="div"></div></div>
+                            <div class="div"></div>
+                        </div>
                     </div>
-                    
+
                 </nav>
             </div>
         </div>
     </header>
-     
-   
-        <slider>
-            <section class="banner__area" style="background-image:url('http://127.0.0.1:5501/app/img/deadpool.jpg')">
-                <div class="slider__container">
-                    <div class="movie__info__wrapper active">
-                        <div class="movie movie__content">
-                            <h2 class="movies__title">Bad Boys: <span class="text__button--color">Ride or Die</span></h2>
-                            <!-- <p class="movies__overview">After their late former Captain is framed, Lowrey and Burnett try to
-                                clear his name, only to end up on the run themselves.</p> -->
-                                <div class="movies__details">
-                                    <p class="movies__details--quality">pg 18</p>
-                                    <p class="hd">HD</p>
-                                    <p class="movies__details--category">Action, drama, thriller</p>
-                                   
-                                    <p class="movies__details--year"><i class="far fa-calendar-alt text__button--color"></i>2023</p>
-                                    <p class="movies__details--year"><i class="far fa-clock text__button--color"></i>128 min</p>
 
-                                </div>
-                                <a href="" class="movie__button"><i class="fas fa-play"></i>Watch Now</a>
-                                <!-- <button type="button" class="movie__button"><i class="fas fa-circle-play"></i>Watch Now</button> -->
+
+    <slider>
+        <section class="banner__area" >
+            <div class="slider__container">
+                <div class="movie__info__wrapper active">
+                    <div class="movie movie__content">
+                        <h2 class="movies__title">Bad Boys: <span class="text__button--color">Ride or Die</span></h2>
+                        <!-- <p class="movies__overview">After their late former Captain is framed, Lowrey and Burnett try to
+                                clear his name, only to end up on the run themselves.</p> -->
+                        <div class="movies__details">
+                            <p class="movies__details--quality">pg 18</p>
+                            <p class="hd">HD</p>
+                            <p class="movies__details--category">Action, drama, thriller</p>
+
+                            <p class="movies__details--year"><i class="far fa-calendar-alt text__button--color"></i>2023
+                            </p>
+                            <p class="movies__details--year"><i class="far fa-clock text__button--color"></i>128 min</p>
+
                         </div>
-                    
+                        <a href="" class="movie__button"><i class="fas fa-play"></i>Watch Now</a>
+                        <!-- <button type="button" class="movie__button"><i class="fas fa-circle-play"></i>Watch Now</button> -->
+                    </div>
+
                     <div class="movie movie__img--wrapper active">
-                            <figure class="movie__img--figure">
-                                <img src="app/img/deadpool.jpg" alt="">
-                            </figure>
+                        <figure class="movie__img--figure">
+                            <img src="app/img/deadpool.jpg" alt="">
+                        </figure>
                     </div>
                 </div>
-                </div>
-            </section>
-            </slider>
-            <!-- <section class="banner__area" style="background-image:url('http://127.0.0.1:5501/app/img/deadpool.jpg')">
-                <div class="slider__container">
-                <div class="slide " style="background-image:url('app/img/bad-boys.jpg')">
-                    <div class="slider__content">
-                        <h2 class="movies__title">Bad Boys: Ride or Die</h2>
-                        <p class="movies__overview">After their late former Captain is framed, Lowrey and Burnett try to
-                            clear his name, only to end up on the run themselves.</p>
-                            <div class="movies__details">
-                                <p class="movies__details--category">Action</p>
-                                <p class="movies__details--category">Action</p>
-                                <p class="movies__details--year">2023</p>
-                            </div>
-                            <button type="button"><i class="fas fa-circle-play"></i>Watch Now</button>
-                    </div>
-                </div>
-                <div class="slide active" style="background-image:url('http://127.0.0.1:5501/app/img/deadpool.jpg')">
-                    <div class="slider__content active">
-                        <h2 class="movies__title">Bad Boys: Ride or Die3</h2>
-                        <p class="movies__overview">After their late former Captain is framed, Lowrey and Burnett try to
-                            clear his name, only to end up on the run themselves.</p>
-                            <div class="movies__details">
-                                <p class="movies__details--category">Action</p>
-                                <p class="movies__details--category">Action</p>
-                                <p class="movies__details--year">2023</p>
-                            </div>
-                            <button type="button"><i class="fas fa-circle-play"></i>Watch Now</button>
-                    </div>
-                </div>
-                <div class="slide" style="background-image:url('http://127.0.0.1:5501/app/img/insideout2.jpg')">
-                    
-                    <div class="slider__content">
-                        <h2 class="movies__title">Bad Boys: Ride or Die1</h2>
-                        <p class="movies__overview">After their late former Captain is framed, Lowrey and Burnett try to
-                            clear his name, only to end up on the run themselves.</p>
-                            <div class="movies__details">
-                                <p class="movies__details--category">Action</p>
-                                <p class="movies__details--category">Action</p>
-                                <p class="movies__details--year">2023</p>
-                            </div>
-                            <button type="button"><i class="fas fa-circle-play"></i>Watch Now</button>
-                    </div>
-                </div>
-                <div class="slide" style="background-image:url('http://127.0.0.1:5501/app/img/jl3.jpg')">
-                    <div class="slider__content">
-                        <h2 class="movies__title">Bad Boys: Ride or Die2</h2>
-                        <p class="movies__overview">After their late former Captain is framed, Lowrey and Burnett try to
-                            clear his name, only to end up on the run themselves.</p>
-                            <div class="movies__details">
-                                <p class="movies__details--category">Action</p>
-                                <p class="movies__details--category">Action</p>
-                                <p class="movies__details--year">2023</p>
-                            </div>
-                            <button type="button"><i class="fas fa-circle-play"></i>Watch Now</button>
-                    </div>
-                </div>
-                <button class="arrow left__arrow" id="left"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
-                <button class="arrow right__arrow" id="right"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-            </div></section>
-        </slider>  -->
-        
- 
+            </div>
+        </section>
+    </slider>
+
+
+
 </body>
 
 </html>

@@ -8,16 +8,16 @@ const slider_images = [
     'app/img/insideout2.jpg',
     'app/img/jl3.jpg',
 ]
-const header = document.querySelector('.banner__area');
+
 const slider_container = document.querySelector('.slider__container')
 
 
-
 const addSliderImg = (images) => {
+    
     let active = images[activeSlide];
-
+    
     let sliderHTML = images.map((image) => {
-
+        
         activeStatus = active === image? 'active':''
           
         return slider_html(activeStatus,image)
@@ -29,12 +29,12 @@ const addSliderImg = (images) => {
 
 const slider_html = (activeStatus,image)=>{
         
-        return `<div class="movie__info__wrapper ${activeStatus}">
+        return `<div class="movie__info__wrapper ">
                         <div class="movie movie__content">
-                            <h2 class="movies__title">Bad Boys: <span class="text__button--color">Ride or Die</span></h2>
+                            <h2 class="movies__title ${activeStatus}">Bad Boys: <span class="text__button--color">Ride or Die</span></h2>
                             <!-- <p class="movies__overview">After their late former Captain is framed, Lowrey and Burnett try to
                                 clear his name, only to end up on the run themselves.</p> -->
-                                <div class="movies__details">
+                                <div class="movies__details ${activeStatus}">
                                     <p class="movies__details--quality">pg 18</p>
                                     <p class="hd">HD</p>
                                     <p class="movies__details--category">Action, drama, thriller</p>
@@ -49,63 +49,44 @@ const slider_html = (activeStatus,image)=>{
                     
                     <div class="movie movie__img--wrapper ${activeStatus}">
                             <figure class="movie__img--figure">
-                                <img src="app/img/deadpool.jpg" alt="">
+                                <img src="${image}" alt="">
                             </figure>
                     </div>
                 </div>`;
     }
 
 addSliderImg(slider_images)
-// const sliders = document.querySelectorAll('.slide')
-// const sliderContent = document.querySelectorAll('.slider__content')
-// const leftBtn = document.querySelector('#left')
-// const rightBtn = document.querySelector('#right')
-// const setBgBody = () => {
+const movie__info__wrapper = document.querySelectorAll('.movie__info__wrapper')
+const banner__area = document.querySelector('.banner__area');
 
-//     header.style.backgroundImage = sliders[activeSlide].style.backgroundImage
-// }
-// setBgBody()
-// const setActiveSlide = () => {
-//     sliders.forEach(slides => slides.classList.remove('active'))
-//     sliderContent.forEach(sliders => sliders.classList.remove('active'))
-//     sliders[activeSlide].classList.add('active')
-//     sliderContent[activeSlide].classList.add('active')
-// }
+const setBgBody = () => {
+    banner__area.setAttribute
+    banner__area.style.backgroundImage = `url(${movie__info__wrapper[activeSlide].querySelector('img').src})`
+}
+setBgBody()
+const nextSlide=()=>{
+    activeSlide++
+    if(activeSlide > movie__info__wrapper.length - 1){
+            activeSlide = 0
+    }
+}
+const setActiveSlide=()=>{
+    movie__info__wrapper.forEach(slides=> 
+    {
+     
+        slides.querySelector('.movie__img--wrapper').classList.remove('active')
 
-
-// rightBtn.addEventListener('click', () => {
-
-
-//     nextSlide()
-//     setBgBody()
-//     setActiveSlide()
-
-// })
-// leftBtn.addEventListener('click', () => {
-
-//     previousSlide()
-//     setBgBody()
-//     setActiveSlide()
-
-// })
-
-// const nextSlide = () => {
-//     activeSlide++
-//     if (activeSlide > sliders.length - 1) {
-//         activeSlide = 0
-//     }
-// }
-// const previousSlide = () => {
-//     activeSlide--
-
-//     if (activeSlide === -1) {
-//         activeSlide = sliders.length - 1
-//     }
-// }
-
-
+        slides.querySelector('.movie__content').classList.remove('active')
+        // slides.classList.remove('active')
+    }
+        )
+    movie__info__wrapper[activeSlide].querySelector('.movie__img--wrapper').classList.add('active')
+    movie__info__wrapper[activeSlide].querySelector('.movie__content').classList.add('active')
+    // movie__info__wrapper[activeSlide].classList.add('active')
+}
 setInterval(() => {
     nextSlide()
     setBgBody()
     setActiveSlide()
+//     // addSliderImg()
 }, 7000)
