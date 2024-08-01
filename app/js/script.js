@@ -1,6 +1,6 @@
 
 let activeSlide = 0
-
+let isModalOpen = false
 
 const slider_images = [
     'app/img/bad-boys.jpg',
@@ -13,7 +13,7 @@ const slider_container = document.querySelector('.slider__container')
 
 
 const addSliderImg = (images) => {
-    
+    // console.log(1)
     let active = images[activeSlide];
     
     let sliderHTML = images.map((image) => {
@@ -22,16 +22,16 @@ const addSliderImg = (images) => {
           
         return slider_html(activeStatus,image)
     }).join('')
-
+console.log('i got here')
     
     slider_container.innerHTML = sliderHTML
 }
 
 const slider_html = (activeStatus,image)=>{
         
-        return `<div class="movie__info__wrapper ">
-                        <div class="movie movie__content">
-                            <h2 class="movies__title ${activeStatus}">Bad Boys: <span class="text__button--color">Ride or Die</span></h2>
+        return `<div class="movie__info--wrapper ">
+                        <div class="movie movie__content ${activeStatus}">
+                            <h2 class="movies__title ">Bad Boys: <span class="text__button--color">Ride or Die</span></h2>
                             <!-- <p class="movies__overview">After their late former Captain is framed, Lowrey and Burnett try to
                                 clear his name, only to end up on the run themselves.</p> -->
                                 <div class="movies__details ${activeStatus}">
@@ -56,10 +56,11 @@ const slider_html = (activeStatus,image)=>{
     }
 
 addSliderImg(slider_images)
-const movie__info__wrapper = document.querySelectorAll('.movie__info__wrapper')
+const movie__info__wrapper = document.querySelectorAll('.movie__info--wrapper')
 const banner__area = document.querySelector('.banner__area');
 
 const setBgBody = () => {
+    // console.log(2)
     banner__area.setAttribute
     banner__area.style.backgroundImage = `url(${movie__info__wrapper[activeSlide].querySelector('img').src})`
 }
@@ -85,8 +86,21 @@ const setActiveSlide=()=>{
     // movie__info__wrapper[activeSlide].classList.add('active')
 }
 setInterval(() => {
+    // console.log(3)
     nextSlide()
     setBgBody()
     setActiveSlide()
 //     // addSliderImg()
 }, 7000)
+
+
+function toggleModal() {
+    // alert(123)
+        if (isModalOpen) {
+            isModalOpen = false
+            return document.body.classList.remove("modal--open")
+        }
+        isModalOpen = true
+        // toggle module
+        document.body.classList += " modal--open"
+    }

@@ -22,11 +22,14 @@
     <button class="scroll-top scroll-to-target" data-target="html">
         <i class="fas fa-angle-up"></i>
     </button> -->
-    
+
     <header>
-        <div class="modal search__modal" id="search-modal" tabindex="-1" style="display: block; padding-right: 17px;" aria-modal="true" role="dialog">
+        <div class="modal search__modal" id="search-modal" tabindex="-1" style="display: block; padding-right: 17px;"
+            aria-modal="true" role="dialog">
+            <i class="fas fa-times modal__exit click" onclick="toggleModal()"></i>
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
+
                     <form>
                         <input type="text" placeholder="Search here...">
                         <button><i class="fas fa-search"></i></button>
@@ -51,7 +54,7 @@
                                 <li><a href="">Contact</a></li>
                             </ul>
                         </div>
-                        <div class="search"><i class="fa-solid fa-magnifying-glass"></i>
+                        <div class="search" onclick="toggleModal()"><i class="fa-solid fa-magnifying-glass"></i>
                             <div class="div"></div>
                         </div>
                     </div>
@@ -62,10 +65,10 @@
     </header>
 
 
-    <slider>
-        <section class="banner__area" >
+    <main>
+        <section class="banner__area">
             <div class="slider__container">
-                <div class="movie__info__wrapper active">
+                <div class="movie__info--wrapper active">
                     <div class="movie movie__content">
                         <h2 class="movies__title">Bad Boys: <span class="text__button--color">Ride or Die</span></h2>
                         <!-- <p class="movies__overview">After their late former Captain is framed, Lowrey and Burnett try to
@@ -92,9 +95,57 @@
                 </div>
             </div>
         </section>
-    </slider>
+    </main>
 
+    <section class="movie__menu--display">
+        <div class="movie__menu--wrap">
+        </div>
+        <div class="movie__container">
+            <div class="movie__menu--wrapper">
+                <div class="movie__menu--menu">
+                    <span class="movie__menu--span text__button--color">online streaming</span>
+                    <h2 class="movie__menu--h2">Upcoming Movies</h2>
+                </div>
+                <div class="movie__menu--links">
+                    <ul class="movie__menu--ul">
+                        <li><a href="">Tv Shows</a></li>
+                        <li><a href="">Movies</a></li>
+                        <li><a href="">Anime</a></li>
+                    </ul>
+                    <div class="movie__menu--buttons">
+                        <button type="button" role="presentation" class="owl-prev"><i
+                                class="fas fa-angle-left"></i></button>
+                                <div class="divider">
+                                    <div class="divider__inner"></div>
+                                </div>
+                        <button type="button" role="presentation" class="owl-next"><i
+                                class="fas fa-angle-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="movie__thumbnails">
+                <div class="movie__info--container">
+                    <figure>
+                        <img src="app/img/deadpool.jpg" alt="">
+                    </figure>
+                    <div class="movie__info--data">
+                        <div class="movie__info--top">
+                            <span>Women's Day</span>
+                            <span class="text__button--color">2021</span>
+                        </div>
+                        <div class="movie__info--bottom">
+                            <p class="hd">HD</p>
+                            <p class="movies__details--year"><i class="far fa-clock text__button--color" aria-hidden="true"></i>128 min</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    <section class="movie__thumbnail--display">
 
+    </section>
 
 </body>
 
