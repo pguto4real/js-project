@@ -11,17 +11,25 @@ const slider_images = [
 ]
 const thumbnail_images = [
     'app/img/deadpool_thumbnail.jpg',
+    'app/img/bad-boys.jpg',
+    'app/img/jl3.jpg',
+   'app/img/insideout2.jpg',
+    
     'app/img/deadpool_thumbnail.jpg',
+    'app/img/bad-boys.jpg',
+    'app/img/jl3.jpg',
+   'app/img/insideout2.jpg',
+    
     'app/img/deadpool_thumbnail.jpg',
+    'app/img/bad-boys.jpg',
+    'app/img/jl3.jpg',
+   'app/img/insideout2.jpg',
+    
     'app/img/deadpool_thumbnail.jpg',
-    'app/img/deadpool_thumbnail.jpg',
-    'app/img/deadpool_thumbnail.jpg',
-    'app/img/deadpool_thumbnail.jpg',
-    'app/img/deadpool_thumbnail.jpg',
-    'app/img/deadpool_thumbnail.jpg',
-    'app/img/deadpool_thumbnail.jpg',
-    'app/img/deadpool.jpg',
-
+    'app/img/bad-boys.jpg',
+    'app/img/jl3.jpg',
+   'app/img/insideout2.jpg',
+    
 ]
 
 const slider_container = document.querySelector('.slider__container')
@@ -98,7 +106,7 @@ const thumbnail_html = (i, image) => {
 
     return `<div class="${i} movie__info--container  ${activeStatus}">
                     <figure class="movie__info--figure">
-                        <img src="app/img/deadpool_thumbnail.jpg" alt="">
+                        <img class="movie__img" src="${image}" alt="">
                     </figure>
                     <div class="movie__info--data">
                         <div class="movie__info--top">
