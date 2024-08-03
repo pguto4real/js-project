@@ -1,17 +1,4 @@
 
-<div class="modal search__modal" id="search-modal" tabindex="-1" style="display: block; padding-right: 17px;"
-aria-modal="true" role="dialog">
-<i class="fas fa-times modal__exit click" onclick="toggleModal()"></i>
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-
-        <form>
-            <input type="text" placeholder="Search here...">
-            <button><i class="fas fa-search"></i></button>
-        </form>
-    </div>
-</div>
-</div>
 <div class="nav__container">
 <div class="row">
     <nav class="header__nav">
@@ -29,9 +16,9 @@ aria-modal="true" role="dialog">
                     <li><a href="">Contact</a></li> -->
                 </ul>
             </div>
-            <div class="search_footer" onclick="toggleModal()">
-                <form action="#">
-                    <input type="text" placeholder="Find Favorite Movie">
+            <div class="search__footer" >
+                <form onsubmit="search(event,'footer')">
+                    <input type="text" id="searchQuery1" placeholder="Find Favorite Movie">
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>

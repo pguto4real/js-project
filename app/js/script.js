@@ -57,12 +57,21 @@ async function getgenre(url) {
     return genre_data
 }
 
-
-
-console.log(genre)
-
 let activeSlide = 0
-let activeThumbnail = [0, 1, 2, 3]
+
+// if(width1200){
+  
+//     activeThumbnail = [0,1,2]
+//     console.log(activeThumbnail)
+// }
+// else
+// {
+  
+//     activeThumbnail = [0, 1, 2, 3]
+//     console.log(activeThumbnail)
+// }
+
+
 let isModalOpen = false
 let movie__info_length = 0
 let movie__info__wrapper = ''
@@ -105,18 +114,20 @@ const movie__button = document.querySelector('.movies__button')
 const show__button = document.querySelector('.show__button')
 const movie__buttonID = document.getElementById('movies__button')
 const show__buttonID = document.getElementById('show__button')
+const movie_menu = document.querySelector('.movie__menu--h2')
+const movie_menu_ul = document.querySelector('.movie__menu--ul')
 
-const addThumbnail = async (category) => {
+const addThumbnail = async (category,searchQuery = '') => {
 
 
     if(category === 'movies'){
-        // movie__buttonID.setAttribute("class", "disabled");
+                movie_menu.innerHTML = `Movies`
         movie__button.classList.add('active')
         movie__button.classList.add('disabled')
         show__button.classList.remove('active')
         show__button.classList.remove('disabled')
         // movie__button.classList.add('active')
-        console.log(movie__button.classList)
+       
         try {
             const result = await fetch(moviesApi)
            data = await result.json()
@@ -125,7 +136,8 @@ const addThumbnail = async (category) => {
     
         }
     }
-    else{
+    else if(category === 'tv'){
+        movie_menu.innerHTML = `Tv Shows`
         show__button.classList.add('active')
         show__button.classList.add('disabled')
         movie__button.classList.remove('active')
@@ -141,20 +153,87 @@ const addThumbnail = async (category) => {
         }
   
     }
+    else if(category === 'search'){
+
+        console.log(searchQuery)
+        movie_menu.innerHTML = `Search Result For  <span class="text__button--color">${searchQuery}</span>`
+        // movie_menu_ul.style.display='none'
+    
+        movie__button.classList.remove('active')
+        show__button.classList.remove('active')
+        movie__button.classList.remove('disabled')
+        movie__button.classList.remove('disabled')
+        document.body.classList.remove("modal--open")
+        const element = document.getElementById("movie__menu--wrap");
+
+        element.scrollIntoView();
+        // show__button.classList.add('active')
+        // show__button.classList.add('disabled')
+        // movie__button.classList.remove('active')
+        // movie__button.classList.remove('disabled')
+        // // movie__button.classList.add('active')
+        // console.log(movie__button.classList)
+        try {
+            const result = await fetch(`https://api.themoviedb.org/3/search/multi?query=${searchQuery}&region=US&language=en-US&page=1&api_key=51e92c068c4c48c5c4380d8ab4a65804`)
+           data = await result.json()
+     
+          let newData = data.results.filter((element)=>{
+            // console.log(element)
+            if((element.media_type === 'tv' && element.origin_country.includes('US')) && element.media_type !== 'person'){
+                
+               if(element.backdrop_path !== null)
+               {
+                
+                console.log(element.backdrop_path)
+                 return element
+               }
+               
+            }
+            else if((element.media_type === 'movie' ) && element.media_type !== 'person')
+            {
+           
+                if(element.backdrop_path !== null )
+                {
+                    return element
+                }
+                
+            }
+           })
+      
+           displayThumbnail(newData,'',true)
+        } catch (error) {
+    
+        }
+  
+    }
 }
 
-function displayThumbnail(data,category){
+function displayThumbnail(data,category,search = false){
 
     let dataValue = ``
     let i = 0;
-    
+    // console.log(data)
     let thumbNailHTML = data.forEach((image) => {
-  
+        // console.log(image)
         const {id,original_name,first_air_date,backdrop_path,original_title,release_date}=image
         activeStatus = activeThumbnail.includes(i) ? 'active' : ''
-      
-        image_name = category=='movies'?original_title : original_name
-        image_release_date = category=='movies'?release_date.split('-')[0] : first_air_date.split('-')[0]
+        if(search){
+            // console.log('i got here')
+            // console.log(image.media_type)
+            image_name = image.media_type!=='tv'?original_title : original_name
+            image_release_date = image.media_type!=='tv'? release_date.split('-')[0] : first_air_date.split('-')[0]
+        
+            // console.log(release_date)
+            // console.log(first_air_date)
+            // console.log(image_name)
+            // console.log(image_release_date)
+        }
+        else
+        {
+            image_name = category=='movies'?original_title : original_name
+            image_release_date = category=='movies'?release_date.split('-')[0] : first_air_date.split('-')[0]
+        }
+        // console.log('i got here2')
         i++;
         dataValue+=`<div onclick="ShowDetails(${id},'${category}')" class="movie__info--container  ${activeStatus}">
                     <figure class="movie__info--figure">
@@ -175,7 +254,7 @@ function displayThumbnail(data,category){
                     </div>
                 </div>`
     })
-    
+    // console.log('i got here3')
     movie__thumbnails.innerHTML = dataValue
 }
 async function addSliderImg(images) {
@@ -365,7 +444,7 @@ function toggleModal() {
         return document.body.classList.remove("modal--open")
     }
     isModalOpen = true
-    document.body.classList += " modal--open"
+    document.body.classList += "modal--open"
 }
 
 function ShowDetails(movieId,category){
@@ -399,3 +478,16 @@ window.addEventListener('load', ()=>{
     loadSnippet('header')
     loadSnippet('footer')
 });
+
+
+const search = (event,position)=>{
+    event.preventDefault();
+    if(position === 'footer')
+    {
+
+    }
+    position === 'footer' ?searchQuery = document.getElementById("searchQuery1").value:searchQuery = document.getElementById("searchQuery").value;
+    console.log(searchQuery)
+    addThumbnail('search',searchQuery)
+}
+

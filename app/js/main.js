@@ -14,6 +14,7 @@ const youTubeVideoURL = "https://www.youtube.com/watch?v="
 const category = localStorage.getItem('category')
 const movieId = localStorage.getItem('movieId')
 const modieDetailAPI = `https://api.themoviedb.org/3/movie/${movieId}?&append_to_response=videos&api_key=51e92c068c4c48c5c4380d8ab4a65804`
+const tvDetailAPI = `https://api.themoviedb.org/3/tv/${movieId}?&append_to_response=videos&api_key=51e92c068c4c48c5c4380d8ab4a65804`
 // const exportData = {
 //     moviesApi:moviesApi,
 //     tvApi:tvApi,
@@ -29,10 +30,21 @@ const slider_container = document.querySelector('.movie_detail__container')
 const body = document.querySelector('body')
 async function getMovieById() {
     try {
-        const result = await fetch(modieDetailAPI)
-        const data = await result.json()
-        console.log(data)
-        showMovies(data)
+        if(category == 'tv')
+        {
+            const result = await fetch(tvDetailAPI)
+            const data = await result.json()
+            console.log(data)
+            showMovies(data)
+        }
+        else
+        {
+            const result = await fetch(modieDetailAPI)
+            const data = await result.json()
+            console.log(data)
+            showMovies(data)
+        }
+       
         // addSliderImg(data.results)
     } catch (error) {
 
@@ -40,10 +52,25 @@ async function getMovieById() {
 }
 
 async function showMovies(data) {
-    const {backdrop_path,original_title,overview,runtime,tagline,genres,release_date}=data
-    title = original_title.split(' ')
+    const {original_name,first_air_date,backdrop_path,original_title,overview,runtime,tagline,genres,release_date}=data
+
+    
+            if(category == 'tv')
+                {
+                    title = original_name.split(' ')
+                    second_title = title.length > 1 ? title[title.length-1]:''
+                    first_title = title.length > 1 ? title.pop():original_title
+                    image_release_date =  first_air_date.split('-')[0]
+                }
+                else
+                {
+                    title = original_title.split(' ')
     second_title = title.length > 1 ? title[title.length-1]:''
     first_title = title.length > 1 ? title.pop():original_title
+    image_release_date =  release_date.split('-')[0] 
+                }
+               
+                
 let genre="";
 let i = 0
     genres.forEach(element => {
@@ -67,7 +94,7 @@ let i = 0
             <div class="mfp-content">
                 <div onclick="clickToOpen(event,true)" class="mfp-iframe-scaler"><button title="Close (Esc)" type="button"
                         class="mfp-close">×</button><iframe class="mfp-iframe"
-                        src="//www.youtube.com/embed/${data.videos.results[0].key}?autoplay=1" frameborder="0"
+                        // src="//www.youtube.com/embed/${data.videos.results[0]?.key}?autoplay=1" frameborder="0"
                         allowfullscreen=""></iframe></div>
             </div>
             <div class="mfp-preloader">Loading...</div>
@@ -104,7 +131,7 @@ document.querySelector('.mfp-wrap').setAttribute('style','display:none')
                                 <p class="hd">HD</p>
                                 <p class="movies__details--category">${genre}</p>
     
-                                <p class="movies__details--year"><i class="far fa-calendar-alt text__button--color"></i>${release_date.split('-')[0]}
+                                <p class="movies__details--year"><i class="far fa-calendar-alt text__button--color"></i>${image_release_date}
                                 </p>
                                 <p class="movies__details--year"><i class="far fa-clock text__button--color"></i>${runtime} min</p>
     
@@ -165,8 +192,8 @@ function clickToOpen(event,bool) {
     }
     
 }
-movie__button.addEventListener('click', (e) => {
-    e.preventDefault();
-    addThumbnail('movies')
+// movie__button.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     addThumbnail('movies')
 
-})
+// })
