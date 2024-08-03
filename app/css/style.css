@@ -805,3 +805,16 @@ padding-right: 10px;
         width: calc(100%/ 3);
     }
 }
+
+
+@media (max-width: 1024px){
+    .movie__info--wrapper{
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+    .movies__title {font-size: 38px;}
+}
+
+@media (max-width: 996px){
+   
+}
