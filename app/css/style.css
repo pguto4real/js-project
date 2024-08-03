@@ -57,6 +57,7 @@ li.disabled {
 }
 
 body {
+    position: relative;
     height: 100vh;
     font-family: "poppins", sans-serif;
 }
@@ -272,6 +273,7 @@ header {
     background: var(--background-color);
 }
 
+
 .nav__container {
     width: 100%;
     padding-right: 15px;
@@ -460,8 +462,24 @@ vertical-align: bottom;
     top: 5%;
     color: var(--button-color);
 }
+/* FOOTER */
 
-
+footer {
+    position: absolute;
+    left: 0;
+    /* bottom: 0px; */
+    width: 100%;
+    z-index: 9;
+    height: auto;
+    color: var(--white);
+    /* background: #171d22; */
+    background-image: url(/app/img/footer_bg.jpg);
+    /* padding: 20px 0; */
+}
+.search_footer{
+    position: relative;
+    margin-left: 30px;
+}
 /* Movie display */
 
 .movie__menu--display

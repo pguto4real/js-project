@@ -149,7 +149,7 @@ const loadSnippet = (targetDivClass)=>{
 window.addEventListener('load', ()=>{
     // alert(1)
     loadSnippet('header')
-    // loadSnippet('footer')
+    loadSnippet('footer')
 });
 
 function clickToOpen(event,bool) {
