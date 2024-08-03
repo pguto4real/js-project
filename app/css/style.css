@@ -42,7 +42,10 @@
     --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
-
+li.disabled { 
+    pointer-events: none; 
+    cursor: none;
+} 
 .text__button--color {
     color: var(--button-color);
 }
@@ -80,6 +83,7 @@ button {
     height: 100vh;
  object-fit:contain;
     background-size: cover;
+    
     /* transform: translateX(-25%); */
     transition: all 2s ease-in;
 }
@@ -520,7 +524,9 @@ header {
     /* border-color: #2d303d; */
     font-weight: 500;
 }
-
+.movie__menu--ul li.active a{
+    border-color: var(--button-color);
+}
 .movie__menu--buttons{
     display: flex;
     justify-content: end;
@@ -627,6 +633,8 @@ header {
 .movie__info--figure{
     width: 100%;
     height: 100%;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 23px;
     position: relative;
     display: flex;
@@ -634,6 +642,7 @@ header {
     border-radius: 10px;
     overflow: hidden;
     border-style: outset;
+    max-width: 320px;
     /* background-image: url('/app/img/deadpool.jpg'); */
     /* background-position: center center;
     background-size: cover; */

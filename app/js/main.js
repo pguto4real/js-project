@@ -31,3 +31,26 @@
         
 //     }
 // }
+
+const loadSnippet = (targetDivClass)=>{
+
+    const targetEl = document.querySelector(`.${targetDivClass}`)
+   
+    fetch (`${targetDivClass}.html`)
+    .then(res=>{
+        
+        if(res.ok){
+            return res.text();
+        }
+    })
+    .then(htmlSnippet=>{
+     
+        targetEl.innerHTML = htmlSnippet
+    })
+}
+
+window.addEventListener('load', ()=>{
+    // alert(1)
+    loadSnippet('header')
+    // loadSnippet('footer')
+});

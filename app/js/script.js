@@ -3,9 +3,9 @@
 // api key : 51e92c068c4c48c5c4380d8ab4a65804
 // image pathP: https://image.tmdb.org/t/p/w1280/
 
-const moviesApi = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=51e92c068c4c48c5c4380d8ab4a65804"
+const moviesApi = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=51e92c068c4c48c5c4380d8ab4a65804"
 const upcomingMoviesApi = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=51e92c068c4c48c5c4380d8ab4a65804"
-const tvApi = "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1&api_key=51e92c068c4c48c5c4380d8ab4a65804"
+const tvApi = "https://api.themoviedb.org/3/discover/tv?include_adult=false&language=en-US&with_origin_country=US&page=1&sort_by=popularity.desc&api_key=51e92c068c4c48c5c4380d8ab4a65804"
 
 const imagePath = "https://image.tmdb.org/t/p/w1280/"
 const youTubeVideoURL = "https://www.youtube.com/watch?v="
@@ -69,63 +69,101 @@ let movie__info__wrapper = ''
 let movie__info__container = ''
 
 
-const slider_images = [
-    'app/img/bad-boys.jpg',
-    'app/img/deadpool.jpg',
-    'app/img/insideout2.jpg',
-    'app/img/jl3.jpg',
-]
-const thumbnail_images = [
-    'app/img/deadpool_thumbnail.jpg',
-    'app/img/bad-boys.jpg',
-    'app/img/jl3.jpg',
-    'app/img/insideout2.jpg',
+// const slider_images = [
+//     'app/img/bad-boys.jpg',
+//     'app/img/deadpool.jpg',
+//     'app/img/insideout2.jpg',
+//     'app/img/jl3.jpg',
+// ]
+// const thumbnail_images = [
+//     'app/img/deadpool_thumbnail.jpg',
+//     'app/img/bad-boys.jpg',
+//     'app/img/jl3.jpg',
+//     'app/img/insideout2.jpg',
 
-    'app/img/deadpool_thumbnail.jpg',
-    'app/img/bad-boys.jpg',
-    'app/img/jl3.jpg',
-    'app/img/insideout2.jpg',
+//     'app/img/deadpool_thumbnail.jpg',
+//     'app/img/bad-boys.jpg',
+//     'app/img/jl3.jpg',
+//     'app/img/insideout2.jpg',
 
-    'app/img/deadpool_thumbnail.jpg',
-    'app/img/bad-boys.jpg',
-    'app/img/jl3.jpg',
-    'app/img/insideout2.jpg',
+//     'app/img/deadpool_thumbnail.jpg',
+//     'app/img/bad-boys.jpg',
+//     'app/img/jl3.jpg',
+//     'app/img/insideout2.jpg',
 
-    'app/img/deadpool_thumbnail.jpg',
-    'app/img/bad-boys.jpg',
-    'app/img/jl3.jpg',
-    'app/img/insideout2.jpg',
+//     'app/img/deadpool_thumbnail.jpg',
+//     'app/img/bad-boys.jpg',
+//     'app/img/jl3.jpg',
+//     'app/img/insideout2.jpg',
 
-]
+// ]
 
 const slider_container = document.querySelector('.slider__container')
 const movie__thumbnails = document.querySelector('.movie__thumbnails')
 const banner__area_before = document.querySelector('.banner__area');
+const movie__button = document.querySelector('.movies__button')
+const show__button = document.querySelector('.show__button')
+const movie__buttonID = document.getElementById('movies__button')
+const show__buttonID = document.getElementById('show__button')
+
+const addThumbnail = async (category) => {
 
 
-const addThumbnail = async (thumbnailImages,category) => {
-
-let data = ``
     if(category === 'movies'){
-        console.log(category)
+        // movie__buttonID.setAttribute("class", "disabled");
+        movie__button.classList.add('active')
+        movie__button.classList.add('disabled')
+        show__button.classList.remove('active')
+        show__button.classList.remove('disabled')
+        // movie__button.classList.add('active')
+        console.log(movie__button.classList)
         try {
             const result = await fetch(moviesApi)
-            const data = await result.json()
-           
-            let i = 0;
-    let thumbNailHTML = data.results.forEach((image) => {
-        // console.log(image)
-        activeStatus = activeThumbnail.includes(i) ? 'active' : ''
+           data = await result.json()
+           displayThumbnail(data.results,'movies')
+        } catch (error) {
+    
+        }
+    }
+    else{
+        show__button.classList.add('active')
+        show__button.classList.add('disabled')
+        movie__button.classList.remove('active')
+        movie__button.classList.remove('disabled')
+        // movie__button.classList.add('active')
+        console.log(movie__button.classList)
+        try {
+            const result = await fetch(tvApi)
+           data = await result.json()
+           displayThumbnail(data.results,'tv')
+        } catch (error) {
+    
+        }
+  
+    }
+}
 
+function displayThumbnail(data,category){
+
+    let dataValue = ``
+    let i = 0;
+    
+    let thumbNailHTML = data.forEach((image) => {
+  
+        const {id,original_name,first_air_date,backdrop_path,original_title,release_date}=image
+        activeStatus = activeThumbnail.includes(i) ? 'active' : ''
+      
+        image_name = category=='movies'?original_title : original_name
+        image_release_date = category=='movies'?release_date.split('-')[0] : first_air_date.split('-')[0]
         i++;
-        data+=`<div class="movie__info--container  ${activeStatus}">
+        dataValue+=`<div onclick="ShowDetails(${id},'${category}')" class="movie__info--container  ${activeStatus}">
                     <figure class="movie__info--figure">
-                        <img class="movie__img" src="${image}" alt="">
+                        <img class="movie__img" src="${imagePath}${backdrop_path}" alt="">
                     </figure>
                     <div class="movie__info--data">
                         <div class="movie__info--top">
-                            <span class="movie__info--title">Women's Day</span>
-                            <span class=" movie__info--date text__button--color">2021</span>
+                            <span class="movie__info--title">${image_name}</span>
+                            <span class=" movie__info--date text__button--color">${image_release_date}</span>
                         </div>
                         <div class="movie__info--bottom">
                             <p class="movie__hd">HD</p>
@@ -136,21 +174,9 @@ let data = ``
                         </div>
                     </div>
                 </div>`
-        // return thumbnail_html( image)
-    }).join('')
-    console.log(data)
-console.log(thumbNailHTML)
-    movie__thumbnails.innerHTML = thumbNailHTML
-            // addSliderImg(data.results)
-        } catch (error) {
+    })
     
-        }
-    }
-    else{
-        console.log(123)
-    }
-    // let active = images[activeSlide];
-    
+    movie__thumbnails.innerHTML = dataValue
 }
 async function addSliderImg(images) {
     let active = images[0];
@@ -205,37 +231,11 @@ async function addSliderImg(images) {
     movie__info_length = document.querySelectorAll('.movie__info--wrapper').length
     movie__info__wrapper = document.querySelectorAll('.movie__info--wrapper')
     movie__info__container = document.querySelectorAll('.movie__info--container')
+
 }
 
 
-const thumbnail_html = (image) => {
-
-    return `<div class="movie__info--container  ${activeStatus}">
-                    <figure class="movie__info--figure">
-                        <img class="movie__img" src="${image}" alt="">
-                    </figure>
-                    <div class="movie__info--data">
-                        <div class="movie__info--top">
-                            <span class="movie__info--title">Women's Day</span>
-                            <span class=" movie__info--date text__button--color">2021</span>
-                        </div>
-                        <div class="movie__info--bottom">
-                            <p class="movie__hd">HD</p>
-                            <p class="movies__details--year">
-                                <i class="far fa-clock text__button--color left" aria-hidden="true"></i>128 min
-                                <i class="fas fa-thumbs-up text__button--color right"></i>3.5
-                            </p>
-                        </div>
-                    </div>
-                </div>`;
-}
-
-
-addThumbnail(thumbnail_images,'movies')
-
-
-
-// const movie__info__wrapper = document.querySelectorAll('.movie__info--wrapper')
+addThumbnail('movies')
 
 const banner__area = document.querySelector('.banner__area');
 const rightBtn = document.querySelector('#right')
@@ -249,21 +249,25 @@ const setBgBody = () => {
 
 
 const updateActiveThumbnail = (direction) => {
-
+    let movieContainer = document.querySelectorAll('.movie__info--container')
     if (direction == 'right') {
         leftBtn.disabled = false
         leftBtn.classList.remove('disabled')
-        if (activeThumbnail[activeThumbnail.length - 1] === thumbnail_images.length - 1) {
+        
+        if (activeThumbnail[activeThumbnail.length - 1] === movieContainer.length - 1) {
+           
             rightBtn.disabled = true
             rightBtn.classList.add('disabled')
         }
         else {
+        
 
             let newData = activeThumbnail.map((data) => {
 
                 return data + 1
             })
             activeThumbnail = newData
+         
         }
     }
     else {
@@ -284,20 +288,22 @@ const updateActiveThumbnail = (direction) => {
     }
 
 
-    updateThumbnail()
+    updateThumbnail(activeThumbnail)
 
 }
 
 
-const updateThumbnail = () => {
+const updateThumbnail = (data) => {
 
     let activemovieContainer = document.querySelectorAll('.movie__info--container.active')
+    let movieContainer = document.querySelectorAll('.movie__info--container')
     activemovieContainer.forEach(slides => {
         slides.classList.remove('active')
     }
     )
-    activeThumbnail.forEach(id => {
-        movie__info__container[id].classList.add('active')
+    data.forEach(id => {
+        
+        movieContainer[id].classList.add('active')
 
     }
     )
@@ -308,6 +314,18 @@ rightBtn.addEventListener('click', () => {
     updateActiveThumbnail('right')
 
 })
+show__button.addEventListener('click', (e) => {
+    e.preventDefault();
+    addThumbnail('tv')
+
+})
+movie__button.addEventListener('click', (e) => {
+    e.preventDefault();
+    addThumbnail('movies')
+
+})
+
+
 leftBtn.addEventListener('click', () => {
 
     updateActiveThumbnail('left')
@@ -320,7 +338,7 @@ const nextSlide = () => {
         activeSlide = 0
     }
 }
-// nextSlide()
+
 const setActiveSlide = () => {
     // console.log(movie__info__wrapper)
     movie__info__wrapper.forEach(slides => {
@@ -338,7 +356,7 @@ setInterval(() => {
     nextSlide()
     setBgBody()
     setActiveSlide()
-}, 3000)
+}, 7000)
 
 
 function toggleModal() {
@@ -349,3 +367,35 @@ function toggleModal() {
     isModalOpen = true
     document.body.classList += " modal--open"
 }
+
+function ShowDetails(movieId,category){
+    console.log(123)
+    // alert(1)
+    localStorage.setItem("category",category)
+    localStorage.setItem("movieId",movieId)
+    window.open(`${window.location.origin}/movie_details.html`, "_self")
+    // window.location.href = `${window.location.origin}/user.html`
+}
+
+const loadSnippet = (targetDivClass)=>{
+
+    const targetEl = document.querySelector(`.${targetDivClass}`)
+   
+    fetch (`${targetDivClass}.html`)
+    .then(res=>{
+        
+        if(res.ok){
+            return res.text();
+        }
+    })
+    .then(htmlSnippet=>{
+     
+        targetEl.innerHTML = htmlSnippet
+    })
+}
+
+window.addEventListener('load', ()=>{
+    // alert(1)
+    loadSnippet('header')
+    // loadSnippet('footer')
+});
