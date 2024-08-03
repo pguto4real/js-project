@@ -4,13 +4,13 @@
 // image pathP: https://image.tmdb.org/t/p/w1280/
 
 const moviesApi = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=51e92c068c4c48c5c4380d8ab4a65804"
-const upcomingMoviesApi = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=51e92c068c4c48c5c4380d8ab4a65804"
+// const upcomingMoviesApi = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=51e92c068c4c48c5c4380d8ab4a65804"
 const tvApi = "https://api.themoviedb.org/3/discover/tv?include_adult=false&language=en-US&with_origin_country=US&page=1&sort_by=popularity.desc&api_key=51e92c068c4c48c5c4380d8ab4a65804"
 
 const imagePath = "https://image.tmdb.org/t/p/w1280/"
-const youTubeVideoURL = "https://www.youtube.com/watch?v="
+// const youTubeVideoURL = "https://www.youtube.com/watch?v="
 const genreApi = "https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=51e92c068c4c48c5c4380d8ab4a65804"
-const searchUrl = "https://api.themoviedb.org/3/search/movie?query=deadpool&api_key=51e92c068c4c48c5c4380d8ab4a65804"
+// const searchUrl = "https://api.themoviedb.org/3/search/movie?query=deadpool&api_key=51e92c068c4c48c5c4380d8ab4a65804"
 
 // const exportData = {
 //     moviesApi:moviesApi,
@@ -373,7 +373,7 @@ function ShowDetails(movieId,category){
     // alert(1)
     localStorage.setItem("category",category)
     localStorage.setItem("movieId",movieId)
-    window.open(`${window.location.origin}/movie_details.html`, "_self")
+    window.open(`${window.location.origin}/movie_details.html`, "_blank")
     // window.location.href = `${window.location.origin}/user.html`
 }
 
