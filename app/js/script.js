@@ -491,3 +491,39 @@ const search = (event,position)=>{
     addThumbnail('search',searchQuery)
 }
 
+
+// Media Queries
+
+var width1200 = window.matchMedia("(max-width: 1200px)")
+
+// console.log(x)
+
+function checkMediaQueries(x,category) {
+    // console.log(show__button.classList.include('active'))
+    
+
+    if (x.matches) { // If media query matches
+     
+        activeThumbnail = [0,1,2]
+        addThumbnail(category)
+    } else {
+        activeThumbnail = [0,1,2,3]
+        addThumbnail(category)
+       
+    }
+  }
+  checkMediaQueries(width1200,'movies')
+  width1200.addEventListener("change", function() {
+    if(show__button.classList.item(1)){
+        category = show__button.classList.item(1) ? 'tv':'movies'
+}
+else if(movie__button.classList.item(1))
+{
+  category = movie__button.classList.item(1) ? 'movies':'tv'
+}
+
+console.log(category)
+    checkMediaQueries(width1200,category);
+    addThumbnail(category)
+  });
+  
