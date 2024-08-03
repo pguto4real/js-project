@@ -797,3 +797,11 @@ padding-right: 10px;
 }
 
 
+@media (max-width: 1200px){
+    .movie__container{
+        max-width: 960px;
+    }
+    .movie__info--container{
+        width: calc(100%/ 3);
+    }
+}
