@@ -596,6 +596,6 @@ minWWidth576.addEventListener("change", function () {
     addThumbnail(category)
 });
 
-checkMediaQueries(width1200, 'movies')
-checkMediaQueries990(width990, 'movies')
-checkMediaQueries576(minWWidth576, 'movies')
+// checkMediaQueries(width1200, 'movies')
+// checkMediaQueries990(width990, 'movies')
+// checkMediaQueries576(minWWidth576, 'movies')
