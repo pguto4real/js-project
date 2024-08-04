@@ -427,12 +427,12 @@ const setActiveSlide = () => {
     movie__info__wrapper[activeSlide].querySelector('.movie__img--wrapper').classList.add('active')
     movie__info__wrapper[activeSlide].querySelector('.movie__content').classList.add('active')
 }
-// setInterval(() => {
+setInterval(() => {
 
-//     nextSlide()
-//     setBgBody()
-//     setActiveSlide()
-// }, 3000)
+    nextSlide()
+    setBgBody()
+    setActiveSlide()
+}, 3000)
 
 
 function toggleModal() {
