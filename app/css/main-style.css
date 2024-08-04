@@ -926,29 +926,30 @@ footer {
    .banner__area--data{
     height: auto;
    }
-    /* .movie__wrapper{
-        margin-top: 30%;
-    }
-
-    .movie__info--container {
-        width: calc(100%/ 2);
-    }
-
-    .movie__info--wrapper {
-        flex-direction: row;
-    }
-
-    .movie__img--wrapper {
-        width: 100%
-    }
-
-    .movie__img--figure {
-        margin: 0 50px 0 50px;
-    } */
+  
 }
 
 @media (max-width: 767px) {
-
+    .movie_detail__container {
+        max-width: 540px;
+    }
+    .movie-details-content h2 {
+        font-size: 45px;
+      
+    }
+    .movie-details-content h5 {
+        font-size: 20px;
+     
+    }
+    .movie-details-prime{
+        width: 100%;
+    }
+    .movie__wrapper {
+        margin-top: 15%;
+    }
+    .share{
+        visibility: hidden;
+    }
     .search__footer form button {
         right: 10%;
     }
