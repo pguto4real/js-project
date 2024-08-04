@@ -486,7 +486,7 @@ footer {
     color: var(--white);
     /* background: #171d22; */
     /* background-image: url(../); */
-    background-image: url(footer_bg.jpg);
+    background-image: url(../app/img/footer_bg.jpg);
     /* padding: 20px 0; */
 }
 
