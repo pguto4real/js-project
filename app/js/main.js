@@ -129,7 +129,7 @@ document.querySelector('.mfp-wrap').setAttribute('style','display:none')
                             <div class="movies__detail">
                                 <p class="movies__details--quality">pg 18</p>
                                 <p class="hd">HD</p>
-                                <p class="movies__details--category">${genre}</p>
+                                <p class="movies__details--category" title="${genre}">${genre}</p>
     
                                 <p class="movies__details--year"><i class="far fa-calendar-alt text__button--color"></i>${image_release_date}
                                 </p>
@@ -192,6 +192,30 @@ function clickToOpen(event,bool) {
     }
     
 }
+var minWWidth576 = window.matchMedia("(max-width: 576px)")
+function checkMediaQueries576(x) {
+    // console.log(show__button.classList.include('active'))
+
+    title = document.querySelector('.movies__details--category')
+    console.log(title)
+    if (x.matches) { // If media query matches
+        if (title.innerHTML.length > 15) {
+            genre_split = title.innerHTML.split(',')
+            genre_split.pop()
+            genre_split.join(',')
+            genre = genre_split.join(',')
+            // console.log(genre)
+            title.innerHTML = genre
+        }
+
+    } else {
+        title.innerHTML = title.title
+    }
+}
+// checkMediaQueries576(minWWidth576)
+minWWidth576.addEventListener("change", function () {
+    checkMediaQueries576(minWWidth576)
+});
 // movie__button.addEventListener('click', (e) => {
 //     e.preventDefault();
 //     addThumbnail('movies')

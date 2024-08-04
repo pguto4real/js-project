@@ -884,8 +884,14 @@ footer {
 @media (max-width: 1024px) {}
 
 /* @media (max-width: 996px) {}
-
-@media (max-width: 996px) {} */
+*/
+@media (max-width: 996px) {
+ .mfp-wrap {
+    top: -80%;}
+.mfp-iframe-holder .mfp-close {
+    top: -13%;
+    left: 5px;
+}} 
 
 @media (max-width: 990px) {
     .movie_detail__container {
@@ -933,7 +939,12 @@ footer {
    .banner__area--data{
     height: auto;
    }
-  
+   .mfp-wrap {
+    top: 0%;}
+.mfp-iframe-holder .mfp-close {
+    top: -9%;
+    left: 0px;
+}
 }
 
 @media (max-width: 767px) {
@@ -968,9 +979,18 @@ footer {
     .search__footer {
         padding: 0;
     }
+    .mfp-wrap {
+        top: -80%;}
+    .mfp-iframe-holder .mfp-close {
+        top: -13%;
+        left: 5px;
+    }
 }
 
 @media (max-width:576px) {
+    .movie__wrapper {
+        margin-top: 20%;
+    }
     .movie-details-content h2 {
         font-size: 38px;
     }
@@ -988,5 +1008,93 @@ footer {
 
     .search__footer {
      visibility: hidden;
+    }
+    .mfp-wrap {
+        top: -80%;}
+    .mfp-iframe-holder .mfp-close {
+        top: -13%;
+        left: 5px;
+    }
+    .movies__detail{
+        flex-direction: column;
+        align-items: center;
+    }
+    .movies__details--quality {
+        margin-bottom: 10px;
+    }
+    .hd {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+    .movies__details--category {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+    .movies__details--year{
+        margin: 0;
+        margin-bottom: 10px;
+    }
+    .movie-details-content h2 {
+        font-size: 30px;
+    }
+    .movie-details-content h5 {
+        font-size: 14px;
+    }
+    .movie-details-prime ul li.watch {
+        margin-left: 100px;
+    }
+}
+
+@media (max-width:400px) {
+    .movies__detail{
+        flex-direction: column;
+        align-items: center;
+    }
+    .movies__details--quality {
+        margin-bottom: 10px;
+    }
+    .hd {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+    .movies__details--category {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+    .movies__details--year{
+        margin: 0;
+        margin-bottom: 10px;
+    }
+    .movie-details-content h2 {
+        font-size: 30px;
+    }
+    .movie-details-content h5 {
+        font-size: 14px;
+    }
+    .movie-details-prime ul li.watch {
+        margin-left: 100px;
+    }
+
+    .mfp-iframe-scaler iframe {
+       
+        top: -320%;
+      
+    }
+    .mfp-iframe-holder .mfp-close {
+        top: -340%;
+        left: 3px;
+    }
+}
+
+@media (min-width:300px) {
+    .movie-details-content h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+    .movie__wrapper {
+        margin-top: 25%;
+    }
+    .movie-details-content {
+align-items: center;
     }
 }
