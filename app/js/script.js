@@ -58,7 +58,7 @@ async function getgenre(url) {
 }
 
 let activeSlide = 0
-
+activeThumbnail = [0, 1, 2, 3]
 // if(width1200){
 
 //     activeThumbnail = [0,1,2]
