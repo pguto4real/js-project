@@ -946,6 +946,15 @@ footer {
     .movie__img--wrapper {
         width: 100%
     }
+    .search__footer form button {
+        right: 10%;
+    }
+    .search{
+        padding: 0;
+    }
+    .search__footer{
+        padding: 0;
+    }
 }
 
 @media (max-width:576px) {
