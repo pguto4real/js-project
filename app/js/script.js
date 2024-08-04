@@ -60,13 +60,13 @@ async function getgenre(url) {
 let activeSlide = 0
 
 // if(width1200){
-  
+
 //     activeThumbnail = [0,1,2]
 //     console.log(activeThumbnail)
 // }
 // else
 // {
-  
+
 //     activeThumbnail = [0, 1, 2, 3]
 //     console.log(activeThumbnail)
 // }
@@ -117,26 +117,26 @@ const show__buttonID = document.getElementById('show__button')
 const movie_menu = document.querySelector('.movie__menu--h2')
 const movie_menu_ul = document.querySelector('.movie__menu--ul')
 
-const addThumbnail = async (category,searchQuery = '') => {
+const addThumbnail = async (category, searchQuery = '') => {
 
 
-    if(category === 'movies'){
-                movie_menu.innerHTML = `Movies`
+    if (category === 'movies') {
+        movie_menu.innerHTML = `Movies`
         movie__button.classList.add('active')
         movie__button.classList.add('disabled')
         show__button.classList.remove('active')
         show__button.classList.remove('disabled')
         // movie__button.classList.add('active')
-       
+
         try {
             const result = await fetch(moviesApi)
-           data = await result.json()
-           displayThumbnail(data.results,'movies')
+            data = await result.json()
+            displayThumbnail(data.results, 'movies')
         } catch (error) {
-    
+
         }
     }
-    else if(category === 'tv'){
+    else if (category === 'tv') {
         movie_menu.innerHTML = `Tv Shows`
         show__button.classList.add('active')
         show__button.classList.add('disabled')
@@ -146,19 +146,19 @@ const addThumbnail = async (category,searchQuery = '') => {
         console.log(movie__button.classList)
         try {
             const result = await fetch(tvApi)
-           data = await result.json()
-           displayThumbnail(data.results,'tv')
+            data = await result.json()
+            displayThumbnail(data.results, 'tv')
         } catch (error) {
-    
+
         }
-  
+
     }
-    else if(category === 'search'){
+    else if (category === 'search') {
 
         console.log(searchQuery)
         movie_menu.innerHTML = `Search Result For  <span class="text__button--color">${searchQuery}</span>`
         // movie_menu_ul.style.display='none'
-    
+
         movie__button.classList.remove('active')
         show__button.classList.remove('active')
         movie__button.classList.remove('disabled')
@@ -175,67 +175,63 @@ const addThumbnail = async (category,searchQuery = '') => {
         // console.log(movie__button.classList)
         try {
             const result = await fetch(`https://api.themoviedb.org/3/search/multi?query=${searchQuery}&region=US&language=en-US&page=1&api_key=51e92c068c4c48c5c4380d8ab4a65804`)
-           data = await result.json()
-     
-          let newData = data.results.filter((element)=>{
-            // console.log(element)
-            if((element.media_type === 'tv' && element.origin_country.includes('US')) && element.media_type !== 'person'){
-                
-               if(element.backdrop_path !== null)
-               {
-                
-                console.log(element.backdrop_path)
-                 return element
-               }
-               
-            }
-            else if((element.media_type === 'movie' ) && element.media_type !== 'person')
-            {
-           
-                if(element.backdrop_path !== null )
-                {
-                    return element
+            data = await result.json()
+
+            let newData = data.results.filter((element) => {
+                // console.log(element)
+                if ((element.media_type === 'tv' && element.origin_country.includes('US')) && element.media_type !== 'person') {
+
+                    if (element.backdrop_path !== null) {
+
+                        console.log(element.backdrop_path)
+                        return element
+                    }
+
                 }
-                
-            }
-           })
-      
-           displayThumbnail(newData,'',true)
+                else if ((element.media_type === 'movie') && element.media_type !== 'person') {
+
+                    if (element.backdrop_path !== null) {
+                        return element
+                    }
+
+                }
+            })
+
+            displayThumbnail(newData, '', true)
         } catch (error) {
-    
+
         }
-  
+
     }
 }
 
-function displayThumbnail(data,category,search = false){
+function displayThumbnail(data, category, search = false) {
 
     let dataValue = ``
     let i = 0;
     // console.log(data)
     let thumbNailHTML = data.forEach((image) => {
         // console.log(image)
-        const {id,original_name,first_air_date,backdrop_path,original_title,release_date}=image
+        const { id, original_name, first_air_date, backdrop_path, original_title, release_date } = image
         activeStatus = activeThumbnail.includes(i) ? 'active' : ''
-        if(search){
+        if (search) {
             // console.log('i got here')
             // console.log(image.media_type)
-            image_name = image.media_type!=='tv'?original_title : original_name
-            image_release_date = image.media_type!=='tv'? release_date.split('-')[0] : first_air_date.split('-')[0]
-        
+            image_name = image.media_type !== 'tv' ? original_title : original_name
+            image_release_date = image.media_type !== 'tv' ? release_date.split('-')[0] : first_air_date.split('-')[0]
+
             // console.log(release_date)
             // console.log(first_air_date)
             // console.log(image_name)
             // console.log(image_release_date)
         }
-        else
-        {
-            image_name = category=='movies'?original_title : original_name
-            image_release_date = category=='movies'?release_date.split('-')[0] : first_air_date.split('-')[0]
+        else {
+            image_name = category == 'movies' ? original_title : original_name
+            image_release_date = category == 'movies' ? release_date.split('-')[0] : first_air_date.split('-')[0]
         }
         // console.log('i got here2')
         i++;
-        dataValue+=`<div onclick="ShowDetails(${id},'${category}')" class="movie__info--container  ${activeStatus}">
+        dataValue += `<div onclick="ShowDetails(${id},'${category}')" class="movie__info--container  ${activeStatus}">
                     <figure class="movie__info--figure">
                         <img class="movie__img" src="${imagePath}${backdrop_path}" alt="">
                     </figure>
@@ -332,21 +328,21 @@ const updateActiveThumbnail = (direction) => {
     if (direction == 'right') {
         leftBtn.disabled = false
         leftBtn.classList.remove('disabled')
-        
+
         if (activeThumbnail[activeThumbnail.length - 1] === movieContainer.length - 1) {
-           
+
             rightBtn.disabled = true
             rightBtn.classList.add('disabled')
         }
         else {
-        
+
 
             let newData = activeThumbnail.map((data) => {
 
                 return data + 1
             })
             activeThumbnail = newData
-         
+
         }
     }
     else {
@@ -381,7 +377,7 @@ const updateThumbnail = (data) => {
     }
     )
     data.forEach(id => {
-        
+
         movieContainer[id].classList.add('active')
 
     }
@@ -435,7 +431,7 @@ const setActiveSlide = () => {
 //     nextSlide()
 //     setBgBody()
 //     setActiveSlide()
-// }, 7000)
+// }, 3000)
 
 
 function toggleModal() {
@@ -447,48 +443,47 @@ function toggleModal() {
     document.body.classList += "modal--open"
 }
 
-function ShowDetails(movieId,category){
+function ShowDetails(movieId, category) {
     console.log(123)
     // alert(1)
-    localStorage.setItem("category",category)
-    localStorage.setItem("movieId",movieId)
+    localStorage.setItem("category", category)
+    localStorage.setItem("movieId", movieId)
     window.open(`${window.location.origin}/movie_details.html`, "_blank")
     // window.location.href = `${window.location.origin}/user.html`
 }
 
-const loadSnippet = (targetDivClass)=>{
+const loadSnippet = (targetDivClass) => {
 
     const targetEl = document.querySelector(`.${targetDivClass}`)
-   
-    fetch (`${targetDivClass}.html`)
-    .then(res=>{
-        
-        if(res.ok){
-            return res.text();
-        }
-    })
-    .then(htmlSnippet=>{
-     
-        targetEl.innerHTML = htmlSnippet
-    })
+
+    fetch(`${targetDivClass}.html`)
+        .then(res => {
+
+            if (res.ok) {
+                return res.text();
+            }
+        })
+        .then(htmlSnippet => {
+
+            targetEl.innerHTML = htmlSnippet
+        })
 }
 
-window.addEventListener('load', ()=>{
+window.addEventListener('load', () => {
     // alert(1)
     loadSnippet('header')
     loadSnippet('footer')
 });
 
 
-const search = (event,position)=>{
+const search = (event, position) => {
     event.preventDefault();
-    if(position === 'footer')
-    {
+    if (position === 'footer') {
 
     }
-    position === 'footer' ?searchQuery = document.getElementById("searchQuery1").value:searchQuery = document.getElementById("searchQuery").value;
+    position === 'footer' ? searchQuery = document.getElementById("searchQuery1").value : searchQuery = document.getElementById("searchQuery").value;
     console.log(searchQuery)
-    addThumbnail('search',searchQuery)
+    addThumbnail('search', searchQuery)
 }
 
 
@@ -496,30 +491,41 @@ const search = (event,position)=>{
 
 var width1200 = window.matchMedia("(max-width: 1200px)")
 var width996 = window.matchMedia("(max-width: 995px)")
+var width990 = window.matchMedia("(max-width: 990px)")
 
 // console.log(x)
 
-function checkMediaQueries(x,category='') {
-    // console.log(show__button.classList.include('active'))
-    
-
+function checkMediaQueries(x, category = '') {
+   console.log(x)
     if (x.matches) { // If media query matches
-     
-        activeThumbnail = [0,1,2]
+
+        activeThumbnail = [0, 1, 2]
         addThumbnail(category)
     } else {
-        activeThumbnail = [0,1,2,3]
+        activeThumbnail = [0, 1, 2, 3]
         addThumbnail(category)
-       
+
     }
-  }
-  function checkMediaQueries996(x) {
+}
+function checkMediaQueries990(x, category = '') {
+    console.log(x)
+     if (x.matches) { // If media query matches
+ 
+         activeThumbnail = [0, 1]
+         addThumbnail(category)
+     } else {
+         activeThumbnail = [0, 1, 2]
+         addThumbnail(category)
+ 
+     }
+ }
+function checkMediaQueries996(x) {
     // console.log(show__button.classList.include('active'))
-    
- title = document.querySelector('.movies__details.active')
- console.log(title)
+
+    title = document.querySelector('.movies__details.active')
+    console.log(title)
     if (x.matches) { // If media query matches
-        if(title.children[2].innerHTML.length > 15){
+        if (title.children[2].innerHTML.length > 15) {
             genre_split = title.children[2].innerHTML.split(',')
             genre_split.pop()
             genre_split.join(',')
@@ -527,28 +533,41 @@ function checkMediaQueries(x,category='') {
             // console.log(genre)
             title.children[2].innerHTML = genre
         }
-       
+
     } else {
         title.children[2].innerHTML = title.children[2].title
     }
-  }
-  checkMediaQueries(width1200,'movies')
-//   checkMediaQueries996(width996)
-  width1200.addEventListener("change", function() {
-    if(show__button.classList.item(1)){
-        category = show__button.classList.item(1) ? 'tv':'movies'
-}
-else if(movie__button.classList.item(1))
-{
-  category = movie__button.classList.item(1) ? 'movies':'tv'
 }
 
+width1200.addEventListener("change", function () {
+    if (show__button.classList.item(1)) {
+        category = show__button.classList.item(1) ? 'tv' : 'movies'
+    }
+    else if (movie__button.classList.item(1)) {
+        category = movie__button.classList.item(1) ? 'movies' : 'tv'
+    }
 
-    checkMediaQueries(width1200,category);
+
+    checkMediaQueries(width1200, category);
     addThumbnail(category)
-  });
+});
 
-  width996.addEventListener("change", function() {
+width996.addEventListener("change", function () {
     checkMediaQueries996(width996)
-  });
-  
+});
+
+width990.addEventListener("change", function () {
+    if (show__button.classList.item(1)) {
+        category = show__button.classList.item(1) ? 'tv' : 'movies'
+    }
+    else if (movie__button.classList.item(1)) {
+        category = movie__button.classList.item(1) ? 'movies' : 'tv'
+    }
+
+
+    checkMediaQueries990(width990, category);
+    addThumbnail(category)
+});
+
+checkMediaQueries(width1200, 'movies')
+checkMediaQueries990(width990, 'movies')
