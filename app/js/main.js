@@ -125,7 +125,7 @@ document.querySelector('.mfp-wrap').setAttribute('style','display:none')
                     <div class="movie movie__details">
                         <div class="movie-details-content">
                             <h5>${tagline}</h5>
-                            <h2>${title.join(' ')}<span class="text__button--color">${second_title}</span></h2>
+                            <h2>${title.join(' ')}<span class="text__button--color"> ${second_title}</span></h2>
                             <div class="movies__detail">
                                 <p class="movies__details--quality">pg 18</p>
                                 <p class="hd">HD</p>
