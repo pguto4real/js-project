@@ -89,7 +89,7 @@ button {
     height: 100vh;
     object-fit: contain;
     background-size: cover;
-    background-image: url(/app/img/movie_details_bg.jpg);
+    background-image: url(movie_details_bg.jpg);
     /* transform: translateX(-25%); */
     /* transition: all 2s ease-in; */
 
@@ -783,7 +783,7 @@ footer {
     height: auto;
     color: var(--white);
     /* background: #171d22; */
-    background-image: url(/app/img/footer_bg.jpg);
+    background-image: url(footer_bg.jpg);
     /* padding: 20px 0; */
 }
 
