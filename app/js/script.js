@@ -492,6 +492,7 @@ const search = (event, position) => {
 var width1200 = window.matchMedia("(max-width: 1200px)")
 var width996 = window.matchMedia("(max-width: 995px)")
 var width990 = window.matchMedia("(max-width: 990px)")
+var minWWidth576 = window.matchMedia("(max-width: 576px)")
 
 // console.log(x)
 
@@ -515,6 +516,18 @@ function checkMediaQueries990(x, category = '') {
          addThumbnail(category)
      } else {
          activeThumbnail = [0, 1, 2]
+         addThumbnail(category)
+ 
+     }
+ }
+ function checkMediaQueries576(x, category = '') {
+    console.log(x)
+     if (x.matches) { // If media query matches
+ 
+         activeThumbnail = [0]
+         addThumbnail(category)
+     } else {
+         activeThumbnail = [0, 1]
          addThumbnail(category)
  
      }
@@ -569,5 +582,19 @@ width990.addEventListener("change", function () {
     addThumbnail(category)
 });
 
+minWWidth576.addEventListener("change", function () {
+    if (show__button.classList.item(1)) {
+        category = show__button.classList.item(1) ? 'tv' : 'movies'
+    }
+    else if (movie__button.classList.item(1)) {
+        category = movie__button.classList.item(1) ? 'movies' : 'tv'
+    }
+
+
+    checkMediaQueries576(minWWidth576, category);
+    addThumbnail(category)
+});
+
 checkMediaQueries(width1200, 'movies')
 checkMediaQueries990(width990, 'movies')
+checkMediaQueries576(minWWidth576, 'movies')

@@ -947,3 +947,43 @@ footer {
         width: 100%
     }
 }
+
+@media (max-width:576px) {
+    .movie__info--container {
+        width: calc(100%/ 1);
+    }
+    .movie__info--data {
+        width: 65%;
+       
+        justify-content: center;
+        margin: 0 auto;
+    }
+    .movie__menu--links{
+        flex-direction: column;
+    }
+    .movie__menu--ul{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .movie__menu--ul li{
+        margin: 0 auto;
+        padding-bottom: 30px;
+        
+    }
+    #movies__button{
+        padding: 11px 37px;
+    }
+    #right,#left{
+        width: 50%;
+    }
+    .search__footer form button {
+        right: 10%;
+    }
+    .search{
+        padding: 0;
+    }
+    .search__footer{
+        padding: 0;
+    }
+}
