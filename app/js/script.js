@@ -287,7 +287,7 @@ async function addSliderImg(images) {
                                     <div class="movies__details ${activeStatus}">
                                         <p class="movies__details--quality">pg 18</p>
                                         <p class="hd">HD</p>
-                                        <p class="movies__details--category">${newGenre}</p>
+                                        <p class="movies__details--category" title="${newGenre}">${newGenre}</p>
                                        
                                         <p class="movies__details--year"><i class="far fa-calendar-alt text__button--color"></i>${image.release_date.split('-')[0]}</p>
                                         <p class="movies__details--year"><i class="far fa-clock text__button--color"></i>128 min</p>
@@ -495,10 +495,11 @@ const search = (event,position)=>{
 // Media Queries
 
 var width1200 = window.matchMedia("(max-width: 1200px)")
+var width996 = window.matchMedia("(max-width: 995px)")
 
 // console.log(x)
 
-function checkMediaQueries(x,category) {
+function checkMediaQueries(x,category='') {
     // console.log(show__button.classList.include('active'))
     
 
@@ -512,7 +513,27 @@ function checkMediaQueries(x,category) {
        
     }
   }
+  function checkMediaQueries996(x) {
+    // console.log(show__button.classList.include('active'))
+    
+ title = document.querySelector('.movies__details.active')
+ console.log(title)
+    if (x.matches) { // If media query matches
+        if(title.children[2].innerHTML.length > 15){
+            genre_split = title.children[2].innerHTML.split(',')
+            genre_split.pop()
+            genre_split.join(',')
+            genre = genre_split.join(',')
+            // console.log(genre)
+            title.children[2].innerHTML = genre
+        }
+       
+    } else {
+        title.children[2].innerHTML = title.children[2].title
+    }
+  }
   checkMediaQueries(width1200,'movies')
+//   checkMediaQueries996(width996)
   width1200.addEventListener("change", function() {
     if(show__button.classList.item(1)){
         category = show__button.classList.item(1) ? 'tv':'movies'
@@ -522,8 +543,12 @@ else if(movie__button.classList.item(1))
   category = movie__button.classList.item(1) ? 'movies':'tv'
 }
 
-console.log(category)
+
     checkMediaQueries(width1200,category);
     addThumbnail(category)
+  });
+
+  width996.addEventListener("change", function() {
+    checkMediaQueries996(width996)
   });
   

@@ -816,5 +816,7 @@ padding-right: 10px;
 }
 
 @media (max-width: 996px){
-   
+   .movie__info--title{
+    font-size: 14px;
+   }
 }
