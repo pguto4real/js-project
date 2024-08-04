@@ -838,6 +838,13 @@ footer {
     opacity: .34;
 }
 
+.search {
+    visibility: hidden;
+}
+
+.search__footer {
+ visibility: hidden;
+}
 
 @media (max-width: 1200px) {
     .movie__wrapper {
@@ -964,16 +971,22 @@ footer {
 }
 
 @media (max-width:576px) {
-
+    .movie-details-content h2 {
+        font-size: 38px;
+    }
+    .movie-details-content h5 {
+        font-size: 18px;
+     
+    }
     .search__footer form button {
         right: 10%;
     }
 
     .search {
-        padding: 0;
+        visibility: hidden;
     }
 
     .search__footer {
-        padding: 0;
+     visibility: hidden;
     }
 }
