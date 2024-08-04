@@ -934,3 +934,16 @@ footer {
     }
 }
 
+@media (max-width: 767px) {
+    .movie__container {
+        max-width: 650px;
+    }
+
+    .movie__info--wrapper {
+        flex-direction: row;
+    }
+
+    .movie__img--wrapper {
+        width: 100%
+    }
+}
