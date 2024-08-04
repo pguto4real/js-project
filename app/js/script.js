@@ -449,7 +449,7 @@ function ShowDetails(movieId, category) {
     // alert(1)
     localStorage.setItem("category", category)
     localStorage.setItem("movieId", movieId)
-    window.open(`${window.location.origin}/movie_details.html`, "_self")
+    window.open(`${window.location.origin}/js-project/movie_details.html`, "_self")
     // window.location.href = `${window.location.origin}/user.html`
 }
 
